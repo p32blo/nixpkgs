@@ -45,7 +45,6 @@ let
         passthru = {
           inherit provider;
           inherit (provider) version;
-          inherit (provider) pname;
         }
         // lib.optionalAttrs (builtins.hasAttr "binlore" providers) {
           binlore.out = (binlore.synthesize (getBin bins.${cmd}) providers.binlore);
@@ -262,6 +261,7 @@ let
     pname: paths:
     buildEnv {
       name = "${pname}-${version}";
+      inherit pname;
       inherit paths;
     };
 
